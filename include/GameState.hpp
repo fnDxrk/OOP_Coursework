@@ -1,11 +1,14 @@
 #pragma once
 
 #include "State.hpp"
+#include "Ball.hpp"
 
 class Game : public State {
 private:
-    RenderWindow* window;
+    RenderWindow *window;
     Event ev;
+
+    Ball *ball;
 
     void initWindow();
 
