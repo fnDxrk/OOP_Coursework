@@ -1,12 +1,10 @@
-#include "../include/Game.hpp"
+#include "../include/GameState.hpp"
 
-//Initializer func
 void Game::initWindow() {
     window = new RenderWindow(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Arkanoid");
     window->setFramerateLimit(60);
 }
 
-//Constructors/Destructors
 Game::Game()
 {
     initWindow();
@@ -17,26 +15,25 @@ Game::~Game()
     delete window;
 }
 
-// Functions
-
-void Game::updateEvent()
-{
-    while(window->pollEvent(ev)) {
-        if (ev.type == Event::Closed) 
+void Game::handleInput() {
+    while (window->pollEvent(ev)) {
+        if (ev.type == Event::Closed) {
             window->close();
+        }
+        
     }
 }
 
 void Game::update()
 {
-    updateEvent();
+
 }
 
-void Game::render()
+void Game::render(RenderWindow* window)
 {
     window->clear();
 
-    //Render items
+    
 
     window->display();
 }
@@ -44,7 +41,8 @@ void Game::render()
 void Game::run()
 {
     while(window->isOpen()) {
-        update();
-        render();
+        handleInput();
+        update(); 
+        render(window);
     }
 }
