@@ -1,55 +1,66 @@
 #include "../include/GameState.hpp"
 
-void Game::initWindow()
+GameState::GameState(RenderWindow* window)
+    : window(window)
+    , ballMove(false)
 {
-    window = new RenderWindow(VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Arkanoid");
-    window->setFramerateLimit(60);
-}
-
-Game::Game()
-{
-    initWindow();
     ball = new Ball();
+    board = new Board();
+    blocks = new Blocks();
 }
 
-Game::~Game()
+GameState::~GameState()
 {
     delete window;
     delete ball;
+    delete board;
 }
 
-void Game::handleInput()
-{
+void GameState::handleInput()
+{   
+    if (!ballMove) {
+        if (Keyboard::isKeyPressed(Keyboard::D)) {
+            board->moveRight();
+            ball->setPosition(Vector2f(board->getPosition().x + board->getSize().x / 2 - ball->getRadius(), ball->getPosition().y));
+        }
+        if (Keyboard::isKeyPressed(Keyboard::A)) {
+            board->moveLeft();
+            ball->setPosition(Vector2f(board->getPosition().x + board->getSize().x / 2 - ball->getRadius(), ball->getPosition().y));
+        }
+    }
+    else if (ballMove) {
+        if (Keyboard::isKeyPressed(Keyboard::D)) {
+            board->moveRight();
+        }
+        if (Keyboard::isKeyPressed(Keyboard::A)) {
+            board->moveLeft();
+        }
+    }
+
     while (window->pollEvent(ev)) {
-        if (ev.type == Event::KeyPressed) {
-            switch (ev.key.code) {
-                case Keyboard::Escape :
-                    window->close();
-                default:
-                    break;
-            }
+        switch (ev.key.code) {
+            case Keyboard::Escape :
+                window->close();
+                break;
+            case Keyboard::Space :
+                ballMove = true;
+
         }
     }
 }
 
-void Game::update()
-{
-}
-
-void Game::render(RenderWindow* window)
-{
-    window->clear();
-
-    ball->draw(window);
-
-    window->display();
-}
-
-void Game::run()
-{
-    while (window->isOpen()) {
-        handleInput();
-        update();
-        render(window);
+void GameState::update()
+{   
+    if (ballMove) {
+        ball->move();
+        if (ball->getGlobalBounds().intersects(board->getGlobalBounds()))
+            ball->setVelocityY(-(rand()%7 + 3));
     }
+}
+
+void GameState::render(RenderWindow* window)
+{
+    ball->draw(window);
+    board->draw(window);
+    blocks->draw(window);
 }

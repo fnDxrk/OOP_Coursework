@@ -1,21 +1,26 @@
 #pragma once
 
-#include "Constants.hpp"
+#include "Const.hpp"
 
 class Ball {
 private:
     CircleShape ball;
-    Vector2f position; //Положение
-    Vector2f speed; //Скорость
-    float radius; //Радиус
-    Color color; //Цвет
+    float radius;
+    Vector2f position;
+    Vector2f velocity;
 
 public:
-    Ball(float speed = 10);
-    void setPosition(float x, float y);
-    Vector2f getPosition() const;
-    void setSpeed(float x, float y);
-    Vector2f getSpeed() const;
+    Ball(float initRadius = 15.f, float speedBall = 12.f);
+
+    float getRadius() const;
+
+    void setPosition(const Vector2f& newPosition);
+    void setVelocityX(const float newVelocity);
+    void setVelocityY(const float newVelocity);
+    sf::FloatRect getGlobalBounds() const;
+    sf::Vector2f getPosition() const;
+    //sf::Vector2f getVelocity() const;
+
     void move();
-    void draw(RenderWindow *window);
+    void draw(RenderWindow* window);
 };

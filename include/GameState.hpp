@@ -2,22 +2,30 @@
 
 #include "State.hpp"
 #include "Ball.hpp"
+#include "Board.hpp"
+#include "Blocks.hpp"
 
-class Game : public State {
+class GameState : public State {
 private:
-    RenderWindow *window;
+    RenderWindow* window;
     Event ev;
 
-    Ball *ball;
+    Ball* ball;
+    Board* board;
+    Blocks* blocks; 
 
-    void initWindow();
-
+    bool ballMove;
+    
 public:
-    Game();
-    virtual ~Game();
+    GameState(RenderWindow* window);
+    ~GameState();
 
-    void handleInput() override;
-    void update() override;
-    void render(RenderWindow* window) override;
-    void run();
+    // Обработка ввода в игровом состоянии
+    virtual void handleInput() override;
+
+    // Обновление игровой логики : проверка столкновений, перемещение объектов и т. д.
+    virtual void update() override;
+
+    // Отрисовка игровых объеков
+    virtual void render(RenderWindow* window) override;
 };
