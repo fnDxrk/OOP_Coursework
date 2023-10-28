@@ -57,6 +57,8 @@ void GameState::update()
             ball->setVelocityY(-(rand()%7 + 3));
         if (blocks->handleCollision(ball->getGlobalBounds())) 
             ball->setVelocityY((rand()%7 + 3));
+        if (ball->getPosition().y > board->getPosition().y)
+            exit(0);
     }
 }
 

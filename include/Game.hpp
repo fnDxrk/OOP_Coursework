@@ -8,6 +8,7 @@
 class Game {
 private:
     RenderWindow window;
+    Font font;
     std::unique_ptr<State> currentState;
 
     void initWindow();
