@@ -55,6 +55,8 @@ void GameState::update()
         ball->move();
         if (ball->getGlobalBounds().intersects(board->getGlobalBounds()))
             ball->setVelocityY(-(rand()%7 + 3));
+        if (blocks->handleCollision(ball->getGlobalBounds())) 
+            ball->setVelocityY((rand()%7 + 3));
     }
 }
 

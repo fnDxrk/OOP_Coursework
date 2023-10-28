@@ -14,5 +14,7 @@ private:
 public:
     Blocks(float initWidth = 70.f, float initHeight = 30.f);
 
+    void setPosition(float x, float y);
+    bool handleCollision(const FloatRect& ballBounds);
     void draw(RenderWindow* window);
 };
