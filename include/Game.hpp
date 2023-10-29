@@ -12,6 +12,7 @@ private:
     std::unique_ptr<State> currentState;
 
     void initWindow();
+    void initFont();
 
 public:
     Game();

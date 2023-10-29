@@ -4,6 +4,7 @@
 #include "Ball.hpp"
 #include "Board.hpp"
 #include "Blocks.hpp"
+#include "Text.hpp"
 
 class GameState : public State {
 private:
@@ -14,10 +15,14 @@ private:
     Board* board;
     Blocks* blocks; 
 
+    TextGame* text;
+
+    int score;
+
     bool ballMove;
     
 public:
-    GameState(RenderWindow* window);
+    GameState(RenderWindow* window, Font& font);
     ~GameState();
 
     // Обработка ввода в игровом состоянии

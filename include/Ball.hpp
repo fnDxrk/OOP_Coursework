@@ -19,7 +19,6 @@ public:
     void setVelocityY(const float newVelocity);
     sf::FloatRect getGlobalBounds() const;
     sf::Vector2f getPosition() const;
-    //sf::Vector2f getVelocity() const;
 
     void move();
     void draw(RenderWindow* window);

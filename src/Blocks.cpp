@@ -33,15 +33,6 @@ bool Blocks::handleCollision(const FloatRect& ballBounds) {
     return false;
 }
 
-
-// FloatRect Blocks::getGlobalBounds() const {
-//     for (int i = 0; i < NUM_BLOCKS_X; i++) {
-//         for (int j = 0; j < NUM_BLOCKS_Y; j++) {
-//             return blocks[i][j].getGlobalBounds();
-//         }
-//     }
-// }
-
 void Blocks::draw(RenderWindow* window) {
     for (int i = 0; i < NUM_BLOCKS_X; i++) {
         for (int j = 0; j < NUM_BLOCKS_Y; j++) {
