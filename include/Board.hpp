@@ -10,7 +10,7 @@ private:
     float speed;  // Скорость перемещения доски
 
 public:
-    Board(float initWidth = 150.f, float initHeight = 20.f, float initSpeed = 15.f);
+    Board(float initWidth = 150.f, float initHeight = 20.f, float initSpeed = 18.f);
 
     void setPosition(const Vector2f& newPosition);
     Vector2f getPosition() const;
