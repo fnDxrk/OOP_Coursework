@@ -1,36 +1,38 @@
 #pragma once
 
+#include "Const.hpp"
 #include "State.hpp"
+#include "TextGame.hpp"
 #include "Ball.hpp"
 #include "Board.hpp"
 #include "Blocks.hpp"
-#include "Text.hpp"
 
 class GameState : public State {
 private:
-    RenderWindow* window;
+    RenderWindow& window;
     Event ev;
 
-    Ball* ball;
-    Board* board;
-    Blocks* blocks; 
-
-    TextGame* text;
+    TextGame text;
+    Font& font;
+    
+    Ball ball;
+    Board board;
+    Blocks blocks;
 
     int score;
 
     bool ballMove;
-    
+    bool gameOver;
+
 public:
-    GameState(RenderWindow* window, Font& font);
-    ~GameState();
+    GameState(RenderWindow& windowGame, Font& fontGame);
 
-    // Обработка ввода в игровом состоянии
-    virtual void handleInput() override;
+    void handleInput() override;
+    void update() override;
+    void render(sf::RenderWindow& window) override;
 
-    // Обновление игровой логики : проверка столкновений, перемещение объектов и т. д.
-    virtual void update() override;
+    int getScore() override;
 
-    // Отрисовка игровых объеков
-    virtual void render(RenderWindow* window) override;
+    bool isGameOver() const override;
+    void setGameOver(bool value);
 };

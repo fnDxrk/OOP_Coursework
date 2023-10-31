@@ -14,13 +14,13 @@ private:
     void initWindow();
     void initFont();
 
-public:
-    Game();
-    virtual ~Game();
+    void changeState(std::unique_ptr<State> newState);
 
     void handleInput();
     void update();
     void render();
-    void changeState(std::unique_ptr<State> newState);
+
+public:
+    Game();
     void run();
 };

@@ -1,4 +1,4 @@
-#include "../include/Text.hpp"
+#include "../include/TextGame.hpp"
 
 TextGame::TextGame(Font& font) {
     text.setFont(font);
@@ -6,6 +6,14 @@ TextGame::TextGame(Font& font) {
     text.setColor(Color::White);
     text.setPosition(60, 30);
 }
+
+// FloatRect TextGame::getLocalBounds() {
+//     return text.getLocalBounds();
+// }
+
+// void TextGame::setOrigin(float x, float y) {
+//     text.setOrigin(x, y);
+// }
 
 void TextGame::setPosition(float x, float y) {
     text.setPosition(Vector2f(x, y));

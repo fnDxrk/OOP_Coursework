@@ -1,20 +1,27 @@
 #pragma once
 
+#include "Const.hpp"
 #include "State.hpp"
+#include "TextGame.hpp"
 
 class EndGameState : public State {
 private:
-    int score; // Счет игрока
+    RenderWindow& window;
+    Event ev;
+
+    TextGame text;
+
+    int scoreFinal;
+
+    bool gameOver;
 
 public:
-    EndGameState(int finalScore);
+    EndGameState(RenderWindow& windowGame, Font& fontGame, int& score);
 
-    // Обработка ввода в состоянии завершения игры
-    virtual void handleInput() override;
+    void handleInput() override;
+    void update() override;
+    void render(sf::RenderWindow& window) override;
 
-    // Обновление состояния завершения игры, если это необходимо
-    virtual void update() override;
-
-    // Отрисовка текста о завершении игры и счета игрока
-    virtual void render(RenderWindow* window) override;
+    bool isGameOver() const override;
+    int getScore() override;
 };
