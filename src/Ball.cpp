@@ -41,7 +41,7 @@ void Ball::move() {
         velocity.x = -velocity.x;
     }
 
-    if (ball.getPosition().y < 0 || ball.getPosition().y > SCREEN_HEIGHT - 2 * radius) {
+    if (ball.getPosition().y < 100 || ball.getPosition().y > SCREEN_HEIGHT - 2 * radius) {
         velocity.y = -velocity.y;
     }
 

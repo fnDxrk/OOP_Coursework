@@ -55,7 +55,7 @@ void GameState::update()
             ball.setVelocityY((rand() % 7 + 3));
             score += 50;
         }
-        if (ball.getPosition().y > board.getPosition().y)
+        if (ball.getPosition().y > board.getPosition().y || score == 3500)
             setGameOver(true);
     }
 }
