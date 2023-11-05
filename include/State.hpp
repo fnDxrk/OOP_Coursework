@@ -10,5 +10,7 @@ public:
     virtual bool isGameOver() const { return false; }
     virtual int getScore() = 0;
 
+    virtual bool shouldRestart() { return false; }
+
     virtual ~State() { }
 };

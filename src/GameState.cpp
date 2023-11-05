@@ -6,7 +6,9 @@ GameState::GameState(RenderWindow& windowGame, Font& fontGame)
     , ball()
     , board()
     , blocks()
+    , ballMove(false)
     , text(fontGame)
+    , gameOver(false)
     , score(0)
 {
 }
@@ -38,6 +40,7 @@ void GameState::handleInput()
             break;
         case Keyboard::Space:
             ballMove = true;
+            break;
         }
     }
 }
@@ -65,7 +68,8 @@ void GameState::render(RenderWindow& window)
     blocks.draw(&window);
 }
 
-int GameState::getScore() {
+int GameState::getScore()
+{
     return score;
 }
 
@@ -77,4 +81,9 @@ bool GameState::isGameOver() const
 void GameState::setGameOver(bool value)
 {
     gameOver = value;
+}
+
+bool GameState::shouldRestart()
+{
+    return false; 
 }

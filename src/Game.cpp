@@ -31,13 +31,16 @@ void Game::handleInput()
 
 void Game::update()
 {
-    currentState->update();
-
     if (currentState->isGameOver()) {
         int score = currentState->getScore();
         std::unique_ptr<State> newState = std::make_unique<EndGameState>(window, font, score);
         changeState(std::move(newState));
-
+    } else {
+        currentState->update();
+        if (currentState->shouldRestart()) {
+            std::unique_ptr<State> newState = std::make_unique<GameState>(window, font);
+            changeState(std::move(newState));
+        }
     }
 }
 

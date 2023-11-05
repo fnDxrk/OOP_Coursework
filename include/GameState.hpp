@@ -35,4 +35,5 @@ public:
 
     bool isGameOver() const override;
     void setGameOver(bool value);
+    bool shouldRestart() override;
 };
