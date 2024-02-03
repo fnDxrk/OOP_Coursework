@@ -7,14 +7,6 @@ TextGame::TextGame(Font& font) {
     text.setPosition(60, 30);
 }
 
-// FloatRect TextGame::getLocalBounds() {
-//     return text.getLocalBounds();
-// }
-
-// void TextGame::setOrigin(float x, float y) {
-//     text.setOrigin(x, y);
-// }
-
 void TextGame::setPosition(float x, float y) {
     text.setPosition(Vector2f(x, y));
 }
